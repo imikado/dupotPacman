@@ -139,6 +139,20 @@ function buildGame(){
 
 function cycle(){
 
+    if(oPacman.newdirection==='gauche' && iCanWalk(oPacman._x-1,oPacman._y)){
+        oPacman.direction=oPacman.newdirection;
+        oPacman.newdirection='';
+    }else if(oPacman.newdirection==='droite' && iCanWalk(oPacman._x+1,oPacman._y)){
+        oPacman.direction=oPacman.newdirection;
+        oPacman.newdirection='';
+    }else if(oPacman.newdirection==='haut' && iCanWalk(oPacman._x,oPacman._y-1)){
+        oPacman.direction=oPacman.newdirection;
+        oPacman.newdirection='';
+    }else if(oPacman.newdirection==='bas' && iCanWalk(oPacman._x,oPacman._y+1)){
+        oPacman.direction=oPacman.newdirection;
+        oPacman.newdirection='';
+    }
+
       _oPageScene.movePacmanTo( oPacman.direction );
 
 }
@@ -153,22 +167,17 @@ function iCanWalk(x_,y_){
 
 
 function clickUp(){
-    if(iCanWalk(oPacman._x,oPacman._y-1) ){
-        oPacman.direction='haut';
-    }
+    oPacman.newdirection='haut';
 }
 function clickDown(){
-    if(iCanWalk(oPacman._x,oPacman._y+1) ){
-        oPacman.direction='bas';
-    }
+    oPacman.newdirection='bas';
+
 }
 function clickLeft(){
-    if(iCanWalk(oPacman._x-1,oPacman._y) ){
-        oPacman.direction='gauche';
-    }
+    oPacman.newdirection='gauche';
+
 }
 function clickRight(){
-    if(iCanWalk(oPacman._x+1,oPacman._y) ){
-        oPacman.direction='droite';
-    }
+    oPacman.newdirection='droite';
+
 }
