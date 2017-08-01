@@ -11,6 +11,10 @@
         <file>btnLeft.png</file>
         <file>btnRight.png</file>
         <file>btnUp.png</file>
+        <file>ghost.png</file>
+        <file>ball.png</file>
+        <file>bigBall.png</file>
+        <file>ghostVulnerable.png</file>
     </qresource>
     <qresource prefix="/items">
         <file>Bouton.qml</file>
@@ -18,6 +22,9 @@
         <file>Pacman.qml</file>
         <file>Left.qml</file>
         <file>Right.qml</file>
+        <file>Ghost.qml</file>
+        <file>Ball.qml</file>
+        <file>BigBall.qml</file>
     </qresource>
     <qresource prefix="/js">
         <file>Game.js</file>

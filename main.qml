@@ -21,6 +21,9 @@ Window {
         id:modelBall
     }
     ListModel{
+        id:modelBigBall
+    }
+    ListModel{
         id:modelWall
     }
 
@@ -38,8 +41,9 @@ Window {
     }
     function initApplication(){
         this.oGame=Game;
-        //oGame.start(Screen.width,Screen.height);
-        this.oGame.start(400,650);
+        oGame.start(Screen.width,Screen.height);
+        //this.oGame.start(400,650);
+
     }
     Component.onCompleted:initApplication()
 

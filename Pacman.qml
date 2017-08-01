@@ -25,5 +25,8 @@ import QtQuick 2.0
                 frameWidth:  40
                 frameHeight: 40
             }
+
+            Behavior on x  { SmoothedAnimation { velocity: 100 } }
+            Behavior on y  { SmoothedAnimation { velocity: 100 } }
     }
 
