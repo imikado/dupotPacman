@@ -35,9 +35,7 @@ Pacman.prototype={
 }
 
 var oPacman=new Pacman();
-oPacman._x=1;
-oPacman._y=1;
-oPacman.direction='droite';
+
 
 
 function getWidth(){
@@ -84,28 +82,26 @@ function gotoScene(){
     buildGame();
 }
 function gotoGameover(){
+    modelBall.clear();
+    modelBigBall.clear();
+    modelGhost.clear();
+
+    tBall=Array();
+    tBigBall=Array();
     main.launchPage('GameOver');
 }
 
 var iCloudY=0;
 
 //jeu
-function addEnemy(){
 
-    modelEnemies.append({x:_xEnemy,y:0});
-    _xEnemy+=convert(120);
-
-    if(_xEnemy > _width){
-        _xEnemy=0;
-    }
-
-    modelCloud.append({x:0,y:iCloudY});
-    iCloudY+=convert(200);
-    if(iCloudY > _height){
-        iCloudY=0;
-    }
-}
 function buildGame(){
+
+    _iScore=0;
+
+    oPacman._x=1;
+    oPacman._y=1;
+    oPacman.direction='droite';
 
 
     tMap=[
@@ -167,11 +163,13 @@ function buildGame(){
 
     _oPageScene.startTimer();
 
-    modelGhost.append({x:1,y:3,direction:'bas',img:"/images/ghost.png"});
-    modelGhost.append({x:1,y:15,direction:'droite',img:"/images/ghost.png"});
-    modelGhost.append({x:7,y:9,direction:'bas',img:"/images/ghost.png"});
+    modelGhost.append({x:1,y:3,direction:'bas',img:"/images/ghost.png",visible:true});
+    modelGhost.append({x:1,y:15,direction:'droite',img:"/images/ghost.png",visible:true});
+    modelGhost.append({x:7,y:9,direction:'bas',img:"/images/ghost.png",visible:true});
 
 }
+
+var bGhostVulnerable=false;
 
 var iCycleGhost=0;
 function cycle(){
@@ -190,7 +188,7 @@ function cycle(){
         oPacman.newdirection='';
     }
 
-    var bGhostVulnerable=false;
+
 
     if(iCycleGhost){
         iCycleGhost++;
@@ -198,9 +196,7 @@ function cycle(){
 
     if(iCycleGhost>20){
 
-        for(var iGhost=0;iGhost< modelGhost.count;iGhost++ ){
-            modelGhost.get(iGhost).img='/images/ghost.png';;
-        }
+        bGhostVulnerable=false;
 
         iCycleGhost=0;
     }
@@ -216,9 +212,7 @@ function cycle(){
 
         modelBigBall.get(tBigBall[oPacman._x+'_'+oPacman._y]).visible=false;
 
-        for(var iGhost=0;iGhost< modelGhost.count;iGhost++ ){
-            modelGhost.get(iGhost).img='/images/ghostVulnerable.png';;
-        }
+        bGhostVulnerable=true
 
         iCycleGhost=1;
 
@@ -230,6 +224,12 @@ function cycle(){
 
     for(var iGhost=0;iGhost< modelGhost.count;iGhost++ ){
         var oGhost=modelGhost.get(iGhost);
+
+        if(bGhostVulnerable){
+             oGhost.img='/images/ghostVulnerable.png';
+        }else{
+            oGhost.img='/images/ghost.png';
+        }
 
         var newDirection=changeDirection(oGhost.direction);
         if(iCanWalkDirection(oGhost,newDirection)){
@@ -259,6 +259,18 @@ function cycle(){
                 oGhost.x+=1;
             }else{
                 oGhost.direction=changeDirection(oGhost.direction);
+            }
+        }
+
+        if(oGhost.x === oPacman._x && oGhost.y === oPacman._y){
+            console.log('ghost x:'+oGhost.x+' oGhost.y '+oGhost.y);
+            if(bGhostVulnerable){
+                oGhost.visible=false;
+            }else{
+                _oPageScene.stopTimer();
+                gotoGameover();
+                break;
+
             }
         }
 

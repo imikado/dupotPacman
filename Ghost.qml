@@ -9,6 +9,8 @@ Repeater{
         height:main.oGame.convert(20)
         color:"transparent"
 
+        visible:model.visible;
+
         x:(model.x*main.oGame.convert(22) )
         y:(model.y*main.oGame.convert(22) )
 

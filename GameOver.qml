@@ -3,7 +3,7 @@ import QtQuick.Controls 1.5
 
 Rectangle {
     visible:true
-    color: "#465973"
+    color: "#5f0f0f"
     width:main.oGame.getWidth()
     height:main.oGame.getHeight()
 
