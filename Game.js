@@ -163,13 +163,21 @@ function buildGame(){
 
     _oPageScene.startTimer();
 
-    modelGhost.append({x:1,y:3,direction:'bas',img:"/images/ghost.png",visible:true});
-    modelGhost.append({x:1,y:15,direction:'droite',img:"/images/ghost.png",visible:true});
-    modelGhost.append({x:7,y:9,direction:'bas',img:"/images/ghost.png",visible:true});
+    modelGhost.append({x:1,y:3,direction:'bas',img:"/images/ghost.png",visible:true,inPrison:false,cyclePrison:0});
+    modelGhost.append({x:1,y:15,direction:'droite',img:"/images/ghost.png",visible:true,inPrison:false,cyclePrison:0});
+    modelGhost.append({x:7,y:9,direction:'bas',img:"/images/ghost.png",visible:true,inPrison:false,cyclePrison:0});
+    modelGhost.append({x:16,y:1,direction:'bas',img:"/images/ghost.png",visible:true,inPrison:false,cyclePrison:0});
 
 }
 
 var bGhostVulnerable=false;
+
+function checkCollisionGhost(oGhost_,oPacman_){
+    if(oGhost_.x === oPacman_._x && oGhost_.y === oPacman_._y && oGhost_.visible){
+        return true;
+    }
+    return false;
+}
 
 var iCycleGhost=0;
 function cycle(){
@@ -225,6 +233,18 @@ function cycle(){
     for(var iGhost=0;iGhost< modelGhost.count;iGhost++ ){
         var oGhost=modelGhost.get(iGhost);
 
+        if(oGhost.inPrison){
+
+            oGhost.cyclePrison++;
+
+            if(oGhost.cyclePrison > 10){
+                oGhost.y=7;
+
+                oGhost.inPrison=false;
+                oGhost.cyclePrison=0;
+            }
+        }
+
         if(bGhostVulnerable){
              oGhost.img='/images/ghostVulnerable.png';
         }else{
@@ -234,6 +254,23 @@ function cycle(){
         var newDirection=changeDirection(oGhost.direction);
         if(iCanWalkDirection(oGhost,newDirection)){
             oGhost.direction=newDirection;
+        }
+
+        if(checkCollisionGhost(oGhost,oPacman) && oGhost.direction!==oPacman.direction ){
+            console.log('check collision avant ghost.direction:'+oGhost.direction+',pacman.direction:'+oPacman.direction+' ghost.x:'+oGhost.x+'ghost.y:'+oGhost.y+' pacman.x:'+oPacman._x+' pacman.y:'+oPacman._y);
+
+            if(bGhostVulnerable){
+                oGhost.visible=false;
+                oGhost.x=9;
+                oGhost.y=9;
+                oGhost.inPrison=true;
+                oGhost.visible=true;
+            }else{
+                _oPageScene.stopTimer();
+                _oPageScene.gameOver();
+                break;
+
+            }
         }
 
         if(oGhost.direction==='haut'){
@@ -262,17 +299,23 @@ function cycle(){
             }
         }
 
-        if(oGhost.x === oPacman._x && oGhost.y === oPacman._y){
-            console.log('ghost x:'+oGhost.x+' oGhost.y '+oGhost.y);
+        if(checkCollisionGhost(oGhost,oPacman) ){
+            console.log('check collision apres ghost.x:'+oGhost.x+'ghost.y:'+oGhost.y+' pacman.x:'+oPacman._x+' pacman.y:'+oPacman._y);
             if(bGhostVulnerable){
                 oGhost.visible=false;
+                oGhost.x=9;
+                oGhost.y=9;
+                oGhost.inPrison=true;
+                oGhost.visible=true;
             }else{
                 _oPageScene.stopTimer();
-                gotoGameover();
+                _oPageScene.gameOver();
                 break;
 
             }
         }
+
+
 
     }
 }
@@ -296,7 +339,7 @@ function changeDirection(direction_){
 
 
 function iCanWalk(x_,y_){
-    if(tMap[y_][x_]===0){
+    if(tMap[y_][x_]===0 || tMap[y_][x_]===4){
         return true;
     }
     return false;

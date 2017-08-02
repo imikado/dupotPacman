@@ -49,6 +49,14 @@ Rectangle{
         onTriggered: main.oGame.addEnemy();
     }*/
 
+    Timer{
+        id:timeGameOver
+        interval: 1000
+        running:false
+        repeat: false
+        onTriggered: main.oGame.gotoGameover();
+    }
+
     Timer {
         id:timerCycle
         interval: 500;
@@ -66,6 +74,10 @@ Rectangle{
     }
     function startTimer(){
         timerCycle.start();
+    }
+
+    function gameOver(){
+        timeGameOver.start();
     }
 
     function movePacman(x_,y_){
