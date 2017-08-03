@@ -5,7 +5,7 @@ import "qrc:/items/"
 
 Rectangle{
     visible:true
-    color:'#000000'
+    color:'#262d2f'
     width:main.oGame.getWidth()
     height:main.oGame.getHeight()
 
@@ -16,11 +16,13 @@ Rectangle{
 
     Wall{}
 
-    Ghost{}
+
 
     Ball{}
 
     BigBall{}
+
+    Ghost{}
 
     Pacman{
         id:"perso"

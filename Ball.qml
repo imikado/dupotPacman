@@ -5,13 +5,13 @@ Repeater{
 
     Rectangle{
         id:item
-        width:main.oGame.convert(20)
-        height:main.oGame.convert(20)
+        width:main.oGame.convert(main.oGame.getTile())
+        height:main.oGame.convert(main.oGame.getTile())
         color:"transparent"
         visible: model.visible
 
-        x:(model.x*main.oGame.convert(22) )
-        y:(model.y*main.oGame.convert(22) )
+        x:(model.x*main.oGame.convert(main.oGame.getTile()) )
+        y:(model.y*main.oGame.convert(main.oGame.getTile()) )
 
 
 

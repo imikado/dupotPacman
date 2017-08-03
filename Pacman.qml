@@ -3,15 +3,15 @@ import QtQuick 2.0
 
     Rectangle{
             id:item
-            width:main.oGame.convert(20)
-            height:main.oGame.convert(20)
+            width:main.oGame.convert(main.oGame.getTile())
+            height:main.oGame.convert(main.oGame.getTile())
             color:"transparent"
 
             property int _x;
             property int _y;
 
-            x:_x*main.oGame.convert(22)
-            y:_y*main.oGame.convert(22)
+            x:_x*main.oGame.convert(main.oGame.getTile())
+            y:_y*main.oGame.convert(main.oGame.getTile())
 
             AnimatedSprite {
                 width:parent.width
@@ -22,8 +22,8 @@ import QtQuick 2.0
 
                 frameDuration: 200
 
-                frameWidth:  40
-                frameHeight: 40
+                frameWidth:  80
+                frameHeight: 80
             }
 
             Behavior on x  { SmoothedAnimation { velocity: 100 } }

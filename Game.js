@@ -36,7 +36,9 @@ Pacman.prototype={
 
 var oPacman=new Pacman();
 
-
+function getTile(){
+    return 26;
+}
 
 function getWidth(){
     return _width;

@@ -1,6 +1,9 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.5
 
+import "qrc:/items"
+
+
 Rectangle {
     visible:true
     color: "#5f0f0f"
@@ -14,25 +17,26 @@ Rectangle {
         width:main.oGame.convert(400)
         height:main.oGame.convert(650)
 
-        Button {
+        Bouton{
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
-            width: main.oGame.convert(291)
-            height: main.oGame.convert(33)
-            text: qsTr("Re-jouer!")
-
-            onClicked:main.oGame.gotoScene()
+            _width: main.oGame.convert(291)
+            _height: main.oGame.convert(33)
+            _text: qsTr("Re-Jouer!")
+            _link:main.oGame.gotoScene
         }
 
-        Button {
+        Bouton{
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
             anchors.verticalCenterOffset: 50
-            width: main.oGame.convert(291)
-            height: main.oGame.convert(33)
-            text: qsTr("Retour au menu")
-
-            onClicked:main.oGame.gotoMenu()
+            _width: main.oGame.convert(291)
+            _height: main.oGame.convert(33)
+            _text: qsTr("Retour au menu")
+            _link:main.oGame.gotoMenu
         }
+
+
+
     }
 }
