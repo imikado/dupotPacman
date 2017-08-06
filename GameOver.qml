@@ -20,8 +20,8 @@ Rectangle {
         Bouton{
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
-            _width: main.oGame.convert(291)
-            _height: main.oGame.convert(33)
+            _width: main.oGame.convert(292)
+            _height: main.oGame.convert(60)
             _text: qsTr("Re-Jouer!")
             _link:main.oGame.gotoScene
         }
@@ -30,8 +30,8 @@ Rectangle {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
             anchors.verticalCenterOffset: 50
-            _width: main.oGame.convert(291)
-            _height: main.oGame.convert(33)
+            _width: main.oGame.convert(292)
+            _height: main.oGame.convert(60)
             _text: qsTr("Retour au menu")
             _link:main.oGame.gotoMenu
         }

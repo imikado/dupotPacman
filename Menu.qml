@@ -29,8 +29,8 @@ Rectangle {
         Bouton{
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
-            _width: main.oGame.convert(291)
-            _height: main.oGame.convert(33)
+            _width: main.oGame.convert(292)
+            _height: main.oGame.convert(60)
             _text: qsTr("Jouer!")
             _link:main.oGame.gotoScene
         }

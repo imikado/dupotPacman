@@ -24,12 +24,12 @@ Item {
             anchors.centerIn: parent
             text: qsTr(_text)
             color:"#ffffff"
-            font.pixelSize: main.oGame.convert( 20)
+            font.pixelSize: main.oGame.convert( 25)
         }
 
         MouseArea{
             anchors.fill: parent
-            onClicked:_link()
+            onPressed:_link()
         }
 
     }

@@ -14,6 +14,8 @@ var _height;
 var _virtualWidth=720;
 var _virtualHeight=960;
 
+
+
 //ratio permettant d’adapter à la résolution de l'écran
 var _iRatio;
 
@@ -57,6 +59,10 @@ function start(width_,height_){
     }
 
     _height=_width*(_virtualHeight/_virtualWidth);
+    if(_height<height_){
+        _height=height_;
+    }
+
     _iRatio=_width/_virtualWidth;
 
     main.width=_width;
