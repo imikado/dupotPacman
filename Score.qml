@@ -3,7 +3,7 @@ import QtGraphicalEffects 1.0
 
 Item{
     anchors.right: parent.right
-    y:main.oGame.convert( main.oGame.getTile()*22 );
+    y:main.oGame.convert( main.oGame.getTile()*32 );
     Text{
         id:"txt"
         text:'000000'
