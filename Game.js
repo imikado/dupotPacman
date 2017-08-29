@@ -23,6 +23,10 @@ var _iScore=0;
 
 var _oPageScene;
 
+function getTile(){
+    return _virtualWidth/25;
+}
+
 function scoreUp(val_){
     _iScore+=val_;
     _oPageScene.setScore(_iScore);
@@ -38,9 +42,7 @@ Pacman.prototype={
 
 var oPacman=new Pacman();
 
-function getTile(){
-    return 28;
-}
+
 
 function getWidth(){
     return _width;

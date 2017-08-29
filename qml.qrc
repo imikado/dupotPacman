@@ -25,6 +25,7 @@
         <file>Ghost.qml</file>
         <file>Ball.qml</file>
         <file>BigBall.qml</file>
+        <file>Joystick.qml</file>
     </qresource>
     <qresource prefix="/js">
         <file>Game.js</file>
